@@ -59,9 +59,9 @@ sbar.add("item", {
   label = { drawing = false },
   click_script = "nowplaying-cli previous",
 })
-sbar.add("item", {
+local play_pause_popup = sbar.add("item", {
   position = "popup." .. media_cover.name,
-  icon = { string = icons.media.play_pause },
+  icon = { string = icons.media.play_pause, width = 18 },
   label = { drawing = false },
   click_script = "nowplaying-cli togglePlayPause",
 })
@@ -94,6 +94,10 @@ media_cover:subscribe("media_change", function(env)
       animate_detail(true)
       interrupt = interrupt + 1
       sbar.delay(5, animate_detail)
+      play_pause_popup:set({ icon = { string = icons.media.pause } })
+    elseif env.INFO.state == "paused" then
+      media_cover:set({ drawing = true })
+      play_pause_popup:set({ icon = { string = icons.media.play } })
     else
       media_cover:set({ popup = { drawing = false } })
     end
