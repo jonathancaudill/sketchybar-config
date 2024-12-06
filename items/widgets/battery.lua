@@ -29,6 +29,34 @@ local remaining_time = sbar.add("item", {
   },
 })
 
+local battery_condition = sbar.add("item", {
+    position = "popup." .. battery.name,
+    icon = {
+      string = "Battery condition:",
+      width = 100,
+      align = "left"
+    },
+    label = {
+      string = "Normal",
+      width = 100,
+      align = "right"
+    },
+})
+
+  local battery_capacity = sbar.add("item", {
+    position = "popup." .. battery.name,
+    icon = {
+      string = "Maximum capacity:",
+      width = 100,
+      align = "left"
+    },
+    label = {
+      string = "86%",
+      width = 100,
+      align = "right"
+    },
+})
+
 
 battery:subscribe({"routine", "power_source_change", "system_woke"}, function()
   sbar.exec("pmset -g batt", function(batt_info)
@@ -89,6 +117,16 @@ battery:subscribe("mouse.clicked", function(env)
       local charging, _, _ = batt_info:find("AC Power")
       local icon = charging and "Time till full:" or "Time remaining:"
       remaining_time:set( { icon = icon, label = label })
+    end)
+
+    sbar.exec("system_profiler SPPowerDataType", function (batt_info)
+      local found, _, condition = batt_info:find("Condition: (%a+)")
+      local label = found and condition or "Unknown"
+      battery_condition:set( { label = label })
+
+      local found, _, capacity = batt_info:find("Maximum Capacity: (%d+)%%")
+      local label = found and capacity .. "%" or "Unknown"
+      battery_capacity:set( { label = label })
     end)
   end
 end)
