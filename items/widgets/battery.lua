@@ -18,7 +18,7 @@ local battery = sbar.add("item", "widgets.battery", {
 local remaining_time = sbar.add("item", {
   position = "popup." .. battery.name,
   icon = {
-    string = "Time remaining:",
+    string = "??",
     width = 100,
     align = "left"
   },
@@ -85,7 +85,10 @@ battery:subscribe("mouse.clicked", function(env)
     sbar.exec("pmset -g batt", function(batt_info)
       local found, _, remaining = batt_info:find(" (%d+:%d+) remaining")
       local label = found and remaining .. "h" or "No estimate"
-      remaining_time:set( { label = label })
+
+      local charging, _, _ = batt_info:find("AC Power")
+      local icon = charging and "Time till full:" or "Time remaining:"
+      remaining_time:set( { icon = icon, label = label })
     end)
   end
 end)
