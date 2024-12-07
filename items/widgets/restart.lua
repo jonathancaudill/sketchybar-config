@@ -4,7 +4,7 @@ local settings = require("settings")
 
 local restart = sbar.add("item", "widgets.restart", {
     position = "right",
-    icon = { string = icons.restart },
+    icon = { string = icons.restart, padding_left = 0 },
     label = { drawing = false }
 })
 

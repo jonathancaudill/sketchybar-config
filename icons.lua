@@ -8,6 +8,7 @@ local icons = {
     gear = "􀍟",
     cpu = "􀫥",
     clipboard = "􀉄",
+    clipboard_list = "􁕜",
     restart="􀚁",
     ram="􀫦",
     weather = {

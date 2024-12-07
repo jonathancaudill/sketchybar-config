@@ -43,7 +43,7 @@ local battery_condition = sbar.add("item", {
     },
 })
 
-  local battery_capacity = sbar.add("item", {
+local battery_capacity = sbar.add("item", {
     position = "popup." .. battery.name,
     icon = {
       string = "Maximum capacity:",
@@ -56,7 +56,6 @@ local battery_condition = sbar.add("item", {
       align = "right"
     },
 })
-
 
 battery:subscribe({"routine", "power_source_change", "system_woke"}, function()
   sbar.exec("pmset -g batt", function(batt_info)

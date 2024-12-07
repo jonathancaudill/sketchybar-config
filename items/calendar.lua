@@ -42,7 +42,7 @@ local cal_bracket = sbar.add("bracket", { cal_up.name, cal_down.name }, {
 })
 
 -- Padding item required because of bracket
-local spacing = sbar.add("item", { position = "right", width = 24 })
+local spacing = sbar.add("item", { position = "right", width = 26 })
 
 cal_bracket:subscribe({ "forced", "routine", "system_woke" }, function(env)
     local up_value = string.format("%s %d", os.date("%a %b"), tonumber(os.date("%d")))
