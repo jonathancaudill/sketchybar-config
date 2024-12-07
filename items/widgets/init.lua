@@ -1,3 +1,4 @@
+require("items.widgets.weather")
 require("items.widgets.restart")
 require("items.widgets.battery")
 require("items.widgets.volume")

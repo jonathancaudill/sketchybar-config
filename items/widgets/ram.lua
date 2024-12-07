@@ -38,7 +38,7 @@ sbar.add("item", "widgets.ram.padding", {
     width = settings.group_paddings
 })
 
-ram:subscribe({ "routine", "forced" }, function(env)
+ram:subscribe({ "routine", "forced", "system_woke" }, function(env)
     sbar.exec("memory_pressure", function(output)
         local percentage = output:match("System%-wide memory free percentage: (%d+)")
         local load = 100 - tonumber(percentage)

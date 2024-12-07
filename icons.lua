@@ -10,6 +10,16 @@ local icons = {
     clipboard = "􀉄",
     restart="􀚁",
     ram="􀫦",
+    weather = {
+        sunny="􀆭",
+        partly="􀇔",
+        cloudy="􀇂",
+        rainy="􀇆",
+        snowy="􀇎",
+        clear="􀇀",
+        foggy="􀇊",
+        stormy="􀇞"
+    },
 
     switch = {
       on = "􁏮",
