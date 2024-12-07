@@ -98,7 +98,7 @@ local function map_time_to_string(minutes)
     return formatted_time
 end
 
-weather:subscribe({ "routine", "forced", "system_woke" }, function(env)
+weather:subscribe({ "routine", "forced", "system_woke", "wifi_change" }, function(env)
     sbar.exec("curl \"wttr.in/?format=j1\"", function(weather_data)
         local current_condition = weather_data.current_condition[1]
         local temperature = current_condition.temp_F .. "°"
@@ -125,8 +125,12 @@ weather:subscribe({ "routine", "forced", "system_woke" }, function(env)
                     })
                 else
                     popup_days[day_index].hour_values[hourly_index]:set({
-                        icon = { string = map_condition_to_icon(hourly_item.weatherDesc[1].value) },
-                        label = { string = map_time_to_string(hourly_item.time) .. " | " .. hourly_item.tempF .. "°" .. " | " .. hourly_item.chanceofrain .. "%" }
+                        icon = {
+                            string = map_condition_to_icon(hourly_item.weatherDesc[1].value)
+                        },
+                        label = {
+                            string = map_time_to_string(hourly_item.time) .. " | " .. hourly_item.tempF .. "°" .. " | " .. hourly_item.chanceofrain .. "%"
+                        }
                     })
                 end
             end

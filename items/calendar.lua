@@ -37,17 +37,21 @@ local cal_bracket = sbar.add("bracket", { cal_up.name, cal_down.name }, {
     color = colors.transparent,
     height = 30,
     border_color = colors.grey
-  }
+  },
+  update_freq = 30
 })
 
 -- Padding item required because of bracket
-sbar.add("item", { position = "right", width = 18 })
+local spacing = sbar.add("item", { position = "right", width = 24 })
 
 cal_bracket:subscribe({ "forced", "routine", "system_woke" }, function(env)
-    local icon = string.format("%s %d", os.date("%a %b"), tonumber(os.date("%d")))
-    local label = string.format("%d:%s", tonumber(os.date("%I")), os.date("%M %p"))
-    cal_up:set({ label = { string = icon } })
-    cal_down:set({ label = { string = label } })
+    local up_value = string.format("%s %d", os.date("%a %b"), tonumber(os.date("%d")))
+    if #up_value < 10 then
+      spacing:set({ width = 18 })
+    end
+    local down_value = string.format("%d:%s", tonumber(os.date("%I")), os.date("%M %p"))
+    cal_up:set({ label = { string = up_value } })
+    cal_down:set({ label = { string = down_value } })
   end)
 
 local function click_event(env)
