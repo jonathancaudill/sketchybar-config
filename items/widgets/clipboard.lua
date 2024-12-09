@@ -66,11 +66,11 @@ clipboard:subscribe("mouse.clicked", function()
             popup:set({ drawing = false })
         end
     end
-    clipboard:set( { popup = { drawing = true } })
+    clipboard:set( { popup = { drawing = "toggle" } })
 end)
 
 clipboard:subscribe("mouse.exited.global", function()
-    clipboard:set( { popup = { drawing = false } })
+    clipboard:set( { popup = { drawing = "off" } })
 end)
 
 sbar.add("bracket", "widgets.clipboard.bracket", { clipboard.name }, {

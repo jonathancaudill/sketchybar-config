@@ -22,6 +22,17 @@ sbar.add("item", "widgets.weather.padding", {
   width = settings.group_paddings
 })
 
+local location_info = sbar.add("item", {
+    position = "popup." .. weather.name,
+    label = {
+      string = "No weather data",
+      width = 160,
+      align = "left",
+      font = { size = 10.0 }
+    },
+    drawing = true
+})
+
 local popup_days = {}
 for i = 1, 3 do
     local popup_hours = {}
@@ -31,7 +42,8 @@ for i = 1, 3 do
           string = "?",
           width = 160,
           align = "left"
-        }
+        },
+        drawing = false
       })
     for j = 1, 8 do
         local hour_item = sbar.add("item", {
@@ -45,7 +57,8 @@ for i = 1, 3 do
               string = "?",
               width = 135,
               align = "left"
-            }
+            },
+            drawing = false
           })
         table.insert(popup_hours, hour_item)
     end
@@ -107,6 +120,14 @@ weather:subscribe({ "routine", "forced", "system_woke", "wifi_change" }, functio
             icon = { string = map_condition_to_icon(condition), drawing = true },
             label = { string = temperature }
         })
+        local nearest_area = weather_data.nearest_area[1]
+        local country = nearest_area.country[1].value
+        local region = country == "United States of America" and nearest_area.region[1].value or country
+        location_info:set({
+            label = {
+              string = nearest_area.areaName[1].value .. ", " .. region
+            }
+        })
         local current_time = os.date("*t")
         local time_number = current_time.hour * 100 + current_time.min
         for day_index, day_item in pairs(weather_data.weather) do
@@ -117,7 +138,7 @@ weather:subscribe({ "routine", "forced", "system_woke", "wifi_change" }, functio
                 local two_days_later = os.time() + (2 * 24 * 60 * 60)
                 display_date = tostring(os.date("%A", two_days_later))
             end
-            popup_days[day_index].day_value:set({ label = { string = display_date } })
+            popup_days[day_index].day_value:set({ label = { string = display_date }, drawing = true })
             for hourly_index, hourly_item in ipairs(day_item.hourly) do
                 if day_index == 1 and time_number > tonumber(hourly_item.time) + 300 then
                     popup_days[day_index].hour_values[hourly_index]:set({
@@ -130,7 +151,8 @@ weather:subscribe({ "routine", "forced", "system_woke", "wifi_change" }, functio
                         },
                         label = {
                             string = map_time_to_string(hourly_item.time) .. " | " .. hourly_item.tempF .. "°" .. " | " .. hourly_item.chanceofrain .. "%"
-                        }
+                        },
+                        drawing = true
                     })
                 end
             end
@@ -143,5 +165,5 @@ weather:subscribe("mouse.clicked", function(env)
 end)
 
 weather:subscribe("mouse.exited.global", function(env)
-    weather:set({ popup = { drawing = false }})
+    weather:set({ popup = { drawing = "off" }})
 end)
