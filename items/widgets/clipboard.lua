@@ -1,6 +1,7 @@
 local icons = require("icons")
 local colors = require("colors")
 local settings = require("settings")
+local tbl = require("utils.tbl")
 
 local clipboard = sbar.add("item", "widgets.clipboard", {
     position = "right",
@@ -35,19 +36,10 @@ for i = 1, max_items do
     table.insert(clipboard_popups, popup_item)
 end
 
-local function is_duplicate(new_item)
-    for _, item in ipairs(clipboard_items) do
-        if item == new_item then
-            return true 
-        end
-    end
-    return false
-end
-
 clipboard:subscribe({ "routine", "forced", "system_woke" }, function()
     sbar.exec("pbpaste", function(current_clipboard)
         local clipboard_text = current_clipboard:gsub("^%s*(.-)%s*$", "%1")
-        if clipboard_text ~= "" and not is_duplicate(clipboard_text) then
+        if clipboard_text ~= "" and not tbl.is_duplicate(clipboard_items, clipboard_text) then
             table.insert(clipboard_items, 1, clipboard_text)
             if #clipboard_items > max_items then
                 table.remove(clipboard_items)

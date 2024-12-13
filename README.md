@@ -32,3 +32,10 @@ git clone https://github.com/TheGoldenPatrik1/sketchybar-config $HOME/.config/sk
 ```
 brew services restart sketchybar
 ```
+
+## Weather Data
+
+The Weather Widget draws from [wttr.in](https://github.com/chubin/wttr.in), which automatically determines your location based on IP address. However, their IP-to-location mapping mechanism is unreliable, especially when using a VPN. To recieve accurate location-based weather data, set up one or both of the following:
+
+- Install [this simple shortcut](https://www.icloud.com/shortcuts/6d1018c04fe2490cb241425d8f133e0c) to get your location. This will be used as the default location-finding service to pass to wttr.in. Currently, the Weather Widget only supports locations in the United States.
+- Set up a `data/weather.txt` file containing a location to pass to wttr.in as a fallback for when the Shortcut doesn't work or isn't installed. You can use any data that wttr.in accepts, but, in the United States, best results are usually achieved with `City+State` where `State` is the full name of the state and not an abbrevation.
