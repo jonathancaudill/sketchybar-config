@@ -14,6 +14,7 @@ In addition to possessing all the features of the aforementioned configuration, 
 - Improved **Media Widget**, with superior play/pause functionality.
 - **Restart Widget** to refresh SketchyBar; useful for development.
 - **RAM Widget** that displays the current RAM utilization, along with a graph.
+- **VPN Icon** that displays on the **Wifi Widget**, when a connected to a VPN.
 - **Weather Widget** that displays current temperature and conditions, with a pop-up menu displaying semi-hourly forecast for the next two days.
 
 ## Installation
