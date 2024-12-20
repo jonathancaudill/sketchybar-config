@@ -82,11 +82,11 @@ local function map_condition_to_icon(cond)
         return icons.weather.cloudy
     elseif condition == "clear" then
         return icons.weather.clear
-    elseif string.find(condition, "storm") then
+    elseif string.find(condition, "storm") or string.find(condition, "thunder") then
         return icons.weather.stormy
     elseif string.find(condition, "partly") then
         return icons.weather.partly
-    elseif string.find(condition, "rain") then
+    elseif string.find(condition, "rain") or string.find(condition, "drizzle") then
         return icons.weather.rainy
     elseif string.find(condition, "snow") then
         return icons.weather.snowy
@@ -155,7 +155,7 @@ local function load_weather(weather_data)
                         string = map_condition_to_icon(hourly_item.weatherDesc[1].value)
                     },
                     label = {
-                        string = map_time_to_string(hourly_item.time) .. " | " .. hourly_item.tempF .. "°" .. " | " .. hourly_item.chanceofrain .. "%"
+                        string = map_time_to_string(hourly_item.time) .. " | " .. hourly_item.tempF .. "°" .. " | " .. (100 - tonumber(hourly_item.chanceofremdry)) .. "%"
                     },
                     drawing = true
                 })
@@ -164,19 +164,23 @@ local function load_weather(weather_data)
     end
 end
 
-weather:subscribe({"routine", "forced", "system_woke", "wifi_change"}, function()
-    sbar.exec("shortcuts run \"Get Location\" | tee", function (location)
-        local loc_tbl = tbl.from_string(location)
+weather:subscribe({"routine", "forced", "system_woke"}, function ()
+    sbar.exec("ipconfig getifaddr en0", function (wifi)
         local loc_str = ""
-        if loc_tbl and #loc_tbl > 2 then
-            local country = loc_tbl[#loc_tbl]
-            if country == "United States" then
-                local region = loc_tbl[#loc_tbl - 1]
-                local city, state, _ = region:match("^(.-)%s+(%a%a)%s+(%d%d%d%d%d)$")
-                if city and state then
-                    loc_str = city .. "+" .. loc.state_abbrevation_to_name(state) 
+        if wifi ~= "" then
+            sbar.exec("shortcuts run \"Get Location\" | tee", function (location)
+                local loc_tbl = tbl.from_string(location)
+                if loc_tbl and #loc_tbl > 2 then
+                    local country = loc_tbl[#loc_tbl]
+                    if country == "United States" then
+                        local region = loc_tbl[#loc_tbl - 1]
+                        local city, state, _ = region:match("^(.-)%s+(%a%a)%s+(%d%d%d%d%d)$")
+                        if city and state then
+                            loc_str = city .. "+" .. loc.state_abbrevation_to_name(state):gsub(" ", "+")
+                        end
+                    end
                 end
-            end
+            end)
         end
         if loc_str == "" then
             local content, _ = file.read(config_filepath)

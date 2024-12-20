@@ -7,7 +7,7 @@ local clipboard = sbar.add("item", "widgets.clipboard", {
     position = "right",
     icon = { string = icons.clipboard_list, padding_left = 0 },
     label = { drawing = false },
-    update_freq = 2,
+    update_freq = 4,
     popup = { align = "center" }
 })
 

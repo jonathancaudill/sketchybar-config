@@ -24,7 +24,7 @@ local ram = sbar.add("graph", "widgets.ram", 42, {
         width = 0,
         y_offset = 4
     },
-    update_freq = 2,
+    update_freq = 3,
     updates = true,
     padding_right = settings.paddings + 6
 })
