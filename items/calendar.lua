@@ -55,7 +55,7 @@ cal_bracket:subscribe({ "forced", "routine", "system_woke" }, function(env)
   end)
 
 local function click_event(env)
-  sbar.exec("open https://calendar.google.com")
+  sbar.exec(settings.calendar.click_script)
 end
 
 cal_up:subscribe("mouse.clicked", click_event)

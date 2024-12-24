@@ -21,4 +21,14 @@ tbl.from_string = function (input)
     return result
 end
 
+tbl.merge = function (default, overwrite)
+    for k, v in pairs(overwrite) do
+        if type(v) == "table" and type(default[k]) == "table" then
+            tbl.merge(default[k], v)
+        else
+            default[k] = v
+        end
+    end
+end
+
 return tbl

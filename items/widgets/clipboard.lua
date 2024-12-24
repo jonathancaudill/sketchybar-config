@@ -13,7 +13,7 @@ local clipboard = sbar.add("item", "widgets.clipboard", {
 
 local clipboard_popups = {}
 local clipboard_items = {}
-local max_items = 5
+local max_items = settings.clipboard.max_items
 
 for i = 1, max_items do
     local popup_item = sbar.add("item", "clipboard.popup" .. i, {

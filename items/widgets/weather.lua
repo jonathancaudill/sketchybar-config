@@ -1,11 +1,8 @@
 local colors = require("colors")
 local icons = require("icons")
 local settings = require("settings")
-local file = require("utils.file")
 local loc = require("utils.loc")
 local tbl = require("utils.tbl")
-
-local config_filepath = os.getenv("CONFIG_DIR") .. "/data/weather.txt"
 
 local weather = sbar.add("item", "widgets.weather", {
     position = "right",
@@ -167,7 +164,7 @@ end
 weather:subscribe({"routine", "forced", "system_woke"}, function ()
     sbar.exec("ipconfig getifaddr en0", function (wifi)
         local loc_str = ""
-        if wifi ~= "" then
+        if settings.weather.use_shortcut and wifi ~= "" then
             sbar.exec("shortcuts run \"Get Location\" | tee", function (location)
                 local loc_tbl = tbl.from_string(location)
                 if loc_tbl and #loc_tbl > 2 then
@@ -182,11 +179,8 @@ weather:subscribe({"routine", "forced", "system_woke"}, function ()
                 end
             end)
         end
-        if loc_str == "" then
-            local content, _ = file.read(config_filepath)
-            if content then
-                loc_str = content
-            end
+        if loc_str == "" and settings.weather.location then
+            loc_str = settings.weather.location
         end
         sbar.exec("curl \"wttr.in/" .. loc_str .. "?format=j1\"", load_weather)
     end)
