@@ -8,7 +8,7 @@ local weather = sbar.add("item", "widgets.weather", {
     position = "right",
     icon = { drawing = false },
     label = {
-    string = icons.loading,
+        string = icons.loading,
         font = { family = settings.font.numbers }
     },
     update_freq = 900,

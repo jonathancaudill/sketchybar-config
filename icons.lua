@@ -21,7 +21,11 @@ local icons = {
         foggy="􀇊",
         stormy="􀇞"
     },
-
+    stocks = {
+      up = "􀄤",
+      down = "􀄥",
+      even = "􀂓"
+    },
     switch = {
       on = "􁏮",
       off = "􁏯",

@@ -30,6 +30,10 @@ local function load_config()
         restart = {
             hide = false
         },
+        stocks = {
+            api_key = false,
+            default_symbol = "SPY"
+        },
         weather = {
             location = false,
             use_shortcut = false
