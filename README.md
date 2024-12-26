@@ -28,7 +28,7 @@ In addition to possessing all the features of the aforementioned configuration, 
 brew install luarocks
 ```
 
-3. Install [Luajson](https://github.com/grafi-tt/lunajson):
+3. Install [Lunajson](https://github.com/grafi-tt/lunajson):
 
 ```bash
 sudo luarocks install lunajson
@@ -37,7 +37,7 @@ sudo luarocks install lunajson
 4. Run the following script, sourced from [this repository](https://github.com/FelixKratz/dotfiles):
 
 ```bash
-curl -L https://raw.githubusercontent.com/FelixKratz/dotfiles/master/install_sketchybar.sh | sh
+sudo curl -L https://raw.githubusercontent.com/FelixKratz/dotfiles/master/install_sketchybar.sh | sh
 ```
 
 5. Run the following command to clone this repository and have it overwrite the SketchyBar configuration:
@@ -51,6 +51,8 @@ git clone https://github.com/TheGoldenPatrik1/sketchybar-config $HOME/.config/sk
 ```
 brew services restart sketchybar
 ```
+
+7. Go to "Settings" -> "Control Center" -> "Automatically hide and show the menu bar" and change its value to "Always."
 
 ## Configuration
 
