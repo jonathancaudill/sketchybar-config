@@ -1,9 +1,20 @@
-require("items.widgets.weather")
-require("items.widgets.restart")
-require("items.widgets.clipboard")
-require("items.widgets.battery")
-require("items.widgets.volume")
-require("items.widgets.wifi")
-require("items.widgets.cpu")
-require("items.widgets.ram")
-require("items.widgets.stocks")
+local settings = require("settings")
+local tbl = require("utils.tbl")
+
+local widgets = {
+    "weather",
+    "restart",
+    "clipboard",
+    "battery",
+    "volume",
+    "wifi",
+    "cpu",
+    "ram",
+    "stocks"
+}
+
+for _, widget in ipairs(widgets) do
+    if tbl.get_index_by_value(settings.hide_widgets, widget) == -1 then
+        require("items.widgets." .. widget)
+    end
+end

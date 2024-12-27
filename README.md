@@ -69,10 +69,10 @@ The default configuration values are defined in full [here](settings.lua). You m
 | `clipboard.max_items` | `integer` | `5` | Number of items to save in the Clipboard Widget. |
 | `font` | `object` | [helpers/default_font.lua](helpers/default_font.lua) | Font configuration. |
 | `group_paddings` | `integer` | `5` | Padding used to separate groups in the bar. |
+| `hide_widgets` | `array` | `[]` | List of widget names that you want hidden from the bar. |
 | `icons` | `string` | `sf-symbols` | Icon library to use; other option is `NerdFont`. |
 | `paddings` | `integer` | `3` | Padding used throughout the bar. |
 | `python_command` | `string` | `python` | Command to use to run Python. The shell environment that SketchyBar uses to execute commands is a bit minimal, so you may need to specify an absolute path to your Python version of choice. |
-| `restart.hide` | `boolean` | `false` | Whether to hide the Restart Widget. |
 | `stocks.default_symbol` | `object` | `{ "symbol": "^GSPC", "name": "S&P 500" }` | The default stock symbol to track and show on the Stock Widget. |
 | `stocks.symbols` | `array` | `[ {"symbol": "^DJI", "name": "Dow Jones"}, {"symbol": "^IXIC", "name": "Nasdaq"}, {"symbol": "^RUT", "name": "Russell 2000"}, {"symbol": "QQQ"} ]` | Stock symbols to track and show on the Stock Widget's popup menu. For each item, you must provide a `symbol` but you do not have to provide a `name`. |
 | `weather.location` | `string` | N/A | Default location used to pass to [wttr.in](https://github.com/chubin/wttr.in). You can use any data that wttr.in accepts, but, in the United States, best results are usually achieved with `City+State` where `State` is the full name of the state and not an abbrevation (e.g., `Chicago+Illinois`). |
