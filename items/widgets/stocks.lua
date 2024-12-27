@@ -63,7 +63,7 @@ for i, _ in ipairs(symbols) do
         position = "popup." .. stocks.name,
         label = {
             string = "No data",
-            width = 100,
+            width = 120,
             align = "left",
             font = { size = 12.0 }
         },
@@ -113,27 +113,23 @@ local function load_stocks()
     end
 end
 
-local toggle_options = {
-    today = "Switch to 1D",
-    five_days = "Switch to 5D",
-    month = "Switch to 1M"
-}
+local toggle_keys = {"today", "five_days", "month"}
+local toggle_values = {"Switch to 1D", "Switch to 5D", "Switch to 1M"}
 local toggle_popups = {}
 for i = 1, 3 do
-    local keys = tbl.keys(toggle_options)
-    local key = keys[i]
+    local key = toggle_keys[i]
     local toggle_data_popup = sbar.add("item", "stocks.popup" .. #stock_popups + i, {
         position = "popup." .. stocks.name,
         label = {
-            string = toggle_options[key],
-            width = 100,
+            string = toggle_values[i],
+            width = 120,
             align = "left",
             font = { size = 12.0 }
         },
         drawing = i ~= 1
     })
     toggle_data_popup:subscribe("mouse.clicked", function ()
-        toggle_popups[tbl.get_index_by_value(keys, data_key)]:set({ drawing = true })
+        toggle_popups[tbl.get_index_by_value(toggle_keys, data_key)]:set({ drawing = true })
         data_key = key
         toggle_data_popup:set({ drawing = false })
         load_stocks()

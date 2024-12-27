@@ -35,9 +35,9 @@ local function load_config()
                 name = "S&P 500"
             },
             symbols = {
-                { symbol = "^DJI", name = "Dow Jones" },
+                { symbol = "^DJI", name = "Dow" },
                 { symbol = "^IXIC", name = "Nasdaq" },
-                { symbol = "^RUT", name = "Russell 2000" },
+                { symbol = "^RUT", name = "Russell 2K" },
                 { symbol = "QQQ" }
             }
         },
