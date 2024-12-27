@@ -75,7 +75,7 @@ local function map_condition_to_icon(cond)
     local condition = cond:lower():match("^%s*(.-)%s*$")
     if condition == "sunny" then
         return icons.weather.sunny
-    elseif condition == "cloudy" or condition == "overcast" then
+    elseif condition == "cloudy" or condition == "overcast" or condition == "haze" then
         return icons.weather.cloudy
     elseif condition == "clear" then
         return icons.weather.clear

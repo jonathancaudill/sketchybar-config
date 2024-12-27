@@ -15,6 +15,7 @@ In addition to possessing all the features of the aforementioned configuration, 
 - Improved **Media Widget**, with superior play/pause functionality.
 - **Restart Widget** to refresh SketchyBar; useful for development.
 - **RAM Widget** that displays the current RAM utilization, along with a graph.
+- **Stock Widget** that displays current stock trends, with 1D, 5D, and 1M data.
 - **VPN Icon** that displays on the **Wifi Widget**, when a connected to a VPN.
 - **Weather Widget** that displays current temperature and conditions, with a pop-up menu displaying semi-hourly forecast for the next two days.
 
@@ -34,25 +35,27 @@ brew install luarocks
 sudo luarocks install lunajson
 ```
 
-4. Run the following script, sourced from [this repository](https://github.com/FelixKratz/dotfiles):
+4. Install [yfinance](https://pypi.org/project/yfinance/).
+
+5. Run the following script, sourced from [this repository](https://github.com/FelixKratz/dotfiles):
 
 ```bash
 sudo curl -L https://raw.githubusercontent.com/FelixKratz/dotfiles/master/install_sketchybar.sh | sh
 ```
 
-5. Run the following command to clone this repository and have it overwrite the SketchyBar configuration:
+6. Run the following command to clone this repository and have it overwrite the SketchyBar configuration:
 
 ```
 git clone https://github.com/TheGoldenPatrik1/sketchybar-config $HOME/.config/sketchybar
 ```
 
-6. Restart SketchyBar:
+7. Restart SketchyBar:
 
 ```
 brew services restart sketchybar
 ```
 
-7. Go to "Settings" -> "Control Center" -> "Automatically hide and show the menu bar" and change its value to "Always."
+8. Go to "Settings" -> "Control Center" -> "Automatically hide and show the menu bar" and change its value to "Always."
 
 ## Configuration
 
@@ -68,6 +71,9 @@ The default configuration values are defined in full [here](settings.lua). You m
 | `group_paddings` | `integer` | `5` | Padding used to separate groups in the bar. |
 | `icons` | `string` | `sf-symbols` | Icon library to use; other option is `NerdFont`. |
 | `paddings` | `integer` | `3` | Padding used throughout the bar. |
+| `python_command` | `string` | `python` | Command to use to run Python. The shell environment that SketchyBar uses to execute commands is a bit minimal, so you may need to specify an absolute path to your Python version of choice. |
 | `restart.hide` | `boolean` | `false` | Whether to hide the Restart Widget. |
+| `stocks.default_symbol` | `object` | `{ "symbol": "^GSPC", "name": "S&P 500" }` | The default stock symbol to track and show on the Stock Widget. |
+| `stocks.symbols` | `array` | `[ {"symbol": "^DJI", "name": "Dow Jones"}, {"symbol": "^IXIC", "name": "Nasdaq"}, {"symbol": "^RUT", "name": "Russell 2000"}, {"symbol": "QQQ"} ]` | Stock symbols to track and show on the Stock Widget's popup menu. For each item, you must provide a `symbol` but you do not have to provide a `name`. |
 | `weather.location` | `string` | N/A | Default location used to pass to [wttr.in](https://github.com/chubin/wttr.in). You can use any data that wttr.in accepts, but, in the United States, best results are usually achieved with `City+State` where `State` is the full name of the state and not an abbrevation (e.g., `Chicago+Illinois`). |
 | `weather.use_shortcut` | `boolean` | `false` | Whether to try to run [this simple shortcut](https://www.icloud.com/shortcuts/6d1018c04fe2490cb241425d8f133e0c) find your location to pass to wttr.in. You must install the shortcut first. |

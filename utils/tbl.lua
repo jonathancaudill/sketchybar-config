@@ -24,7 +24,7 @@ end
 -- merges two tables, overwriting the default values with the new ones
 tbl.merge = function (default, overwrite)
     for k, v in pairs(overwrite) do
-        if type(v) == "table" and type(default[k]) == "table" then
+        if type(v) == "table" and type(default[k]) == "table" and not tbl.is_array_like(v) then
             tbl.merge(default[k], v)
         else
             default[k] = v
@@ -38,8 +38,47 @@ tbl.keys = function (_table)
     for k, _ in pairs(_table) do
         table.insert(keys, k)
     end
-    table.sort(keys, function(a, b) return a > b end)
     return keys
+end
+
+-- copies a table
+tbl.copy = function (original)
+    local copy = {}
+    for key, value in pairs(original) do
+        if type(value) == "table" then
+            copy[key] = tbl.copy(value)
+        else
+            copy[key] = value
+        end
+    end
+    return copy
+end
+
+-- returns the index (not the key) of a value in a table
+tbl.get_index_by_value = function (_table, value)
+    local i = 1
+    for _, val in pairs(_table) do
+        if val == value then
+            return i
+        end
+        i = i + 1
+    end
+    return -1
+end
+
+-- checks if a table is array-like
+tbl.is_array_like = function (_table)
+    if type(_table) ~= "table" then
+        return false
+    end
+    local i = 0
+    for _ in pairs(_table) do
+        i = i + 1
+        if _table[i] == nil then
+            return false
+        end
+    end
+    return true
 end
 
 return tbl

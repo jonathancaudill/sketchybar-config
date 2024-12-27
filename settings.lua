@@ -27,17 +27,26 @@ local function load_config()
         group_paddings = 5,
         icons = "sf-symbols", -- alternatively available: NerdFont
         paddings = 3,
+        python_command = "python",
         restart = {
             hide = false
         },
         stocks = {
-            api_key = false,
-            default_symbol = "SPY"
+            default_symbol = {
+                symbol = "^GSPC",
+                name = "S&P 500"
+            },
+            symbols = {
+                { symbol = "^DJI", name = "Dow Jones" },
+                { symbol = "^IXIC", name = "Nasdaq" },
+                { symbol = "^RUT", name = "Russell 2000" },
+                { symbol = "QQQ" }
+            }
         },
         weather = {
             location = false,
             use_shortcut = false
-        },
+        }
     }
 
     local config_filepath = os.getenv("CONFIG_DIR") .. "/config.json"
