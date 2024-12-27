@@ -8,6 +8,8 @@ local lunajson = require("lunajson")
 local default_symbol = tbl.copy(settings.stocks.default_symbol)
 local symbols = tbl.copy(settings.stocks.symbols)
 local data_key = "today"
+local loading = false
+local refresh_popup
 
 local stocks_up = sbar.add("item", "widgets.stocks1", {
     position = "right",
@@ -111,6 +113,8 @@ local function load_stocks()
             load_stocks()
         end)
     end
+    loading = false
+    refresh_popup:set({ label = { string = "Refresh" } })
 end
 
 local toggle_keys = {"today", "five_days", "month"}
@@ -137,9 +141,23 @@ for i = 1, 3 do
     table.insert(toggle_popups, toggle_data_popup)
 end
 
-stocks:subscribe({"routine", "forced", "system_woke"}, function ()
+refresh_popup = sbar.add("item", "stocks.popup" .. #stock_popups + 3 + 1, {
+    position = "popup." .. stocks.name,
+    label = {
+        string = "Refresh",
+        width = 120,
+        align = "left",
+        font = { size = 12.0 }
+    },
+    drawing = true
+})
+
+local function pull_stock_data()
+    if loading then return end
+    loading = true
+    refresh_popup:set({ label = { string = "Loading..." } })
     local symbol_table = {}
-    for _, value in ipairs(symbols) do
+    for _, value in ipairs(settings.stocks.symbols) do
         table.insert(symbol_table, value.symbol)
     end
     table.insert(symbol_table, settings.stocks.default_symbol.symbol)
@@ -148,7 +166,10 @@ stocks:subscribe({"routine", "forced", "system_woke"}, function ()
         settings.python_command .. " $CONFIG_DIR/helpers/stocks.py $CONFIG_DIR " .. symbols_string,
         load_stocks
     )
-end)
+end
+
+refresh_popup:subscribe("mouse.clicked", pull_stock_data)
+stocks:subscribe({"routine", "forced", "system_woke"}, pull_stock_data)
 
 local function show_popup()
     stocks:set({ popup = { drawing = "toggle" } })
