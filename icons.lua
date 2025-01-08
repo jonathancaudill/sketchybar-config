@@ -19,7 +19,8 @@ local icons = {
         snowy="􀇎",
         clear="􀇀",
         foggy="􀇊",
-        stormy="􀇞"
+        stormy="􀇞",
+        sleet="􀇐"
     },
     stocks = {
       up = "􀄤",

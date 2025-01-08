@@ -83,9 +83,11 @@ local function map_condition_to_icon(cond)
         return icons.weather.stormy
     elseif string.find(condition, "partly") then
         return icons.weather.partly
+    elseif string.find(condition, "sleet") or string.find(condition, "freez") then
+        return icons.weather.sleet
     elseif string.find(condition, "rain") or string.find(condition, "drizzle") then
         return icons.weather.rainy
-    elseif string.find(condition, "snow") then
+    elseif string.find(condition, "snow") or string.find(condition, "ice") then
         return icons.weather.snowy
     elseif string.find(condition, "mist") or string.find(condition, "fog") then
         return icons.weather.foggy
