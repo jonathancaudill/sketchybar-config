@@ -30,15 +30,11 @@ local function load_config()
         paddings = 3,
         python_command = "python",
         stocks = {
-            default_symbol = {
-                symbol = "^GSPC",
-                name = "S&P 500"
-            },
+            default_symbol = { symbol = "^GSPC", name = "S&P 500" },
             symbols = {
                 { symbol = "^DJI", name = "Dow" },
                 { symbol = "^IXIC", name = "Nasdaq" },
-                { symbol = "^RUT", name = "Russell 2K" },
-                { symbol = "QQQ" }
+                { symbol = "^RUT", name = "Russell 2K" }
             }
         },
         weather = {
