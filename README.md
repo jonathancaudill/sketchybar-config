@@ -37,25 +37,19 @@ sudo luarocks install lunajson
 
 4. Install [yfinance](https://pypi.org/project/yfinance/).
 
-5. Run the following script, sourced from [this repository](https://github.com/FelixKratz/dotfiles):
+5. Run the following script to clone this repository and install dependencies:
 
 ```bash
-sudo curl -L https://raw.githubusercontent.com/FelixKratz/dotfiles/master/install_sketchybar.sh | sh
+sudo curl -L https://raw.githubusercontent.com/TheGoldenPatrik1/sketchybar-config/main/install.sh | sh
 ```
 
-6. Run the following command to clone this repository and have it overwrite the SketchyBar configuration:
-
-```
-git clone https://github.com/TheGoldenPatrik1/sketchybar-config $HOME/.config/sketchybar
-```
-
-7. Restart SketchyBar:
+6. Restart SketchyBar:
 
 ```
 brew services restart sketchybar
 ```
 
-8. Go to "Settings" -> "Control Center" -> "Automatically hide and show the menu bar" and change its value to "Always."
+7. Go to "Settings" -> "Control Center" -> "Automatically hide and show the menu bar" and change its value to "Always."
 
 ## Configuration
 
