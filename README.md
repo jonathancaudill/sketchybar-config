@@ -13,8 +13,8 @@ In addition to possessing all the features of the aforementioned configuration, 
 - **Clipboard Widget** that displays up to five of your last copied items. Clicking an item re-copies it.
 - Support for a **JSON Configuration File** to customize various aspects of the bar.
 - Improved **Media Widget**, with superior play/pause functionality.
-- **Restart Widget** to refresh SketchyBar; useful for development.
 - **RAM Widget** that displays the current RAM utilization, along with a graph.
+- **Settings Widget** to refresh SketchyBar, quit SketchyBar, or open the configuration file in VSCode; useful for development.
 - **Stock Widget** that displays current stock trends, with 1D, 5D, and 1M data.
 - **VPN Icon** that displays on the **Wifi Widget**, when a connected to a VPN.
 - **Weather Widget** that displays current temperature and conditions, with a pop-up menu displaying semi-hourly forecast for the next two days.
