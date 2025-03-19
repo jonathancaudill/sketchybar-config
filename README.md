@@ -40,7 +40,7 @@ sudo luarocks install lunajson
 5. Run the following script to clone this repository and install dependencies:
 
 ```bash
-sudo curl -L https://raw.githubusercontent.com/TheGoldenPatrik1/sketchybar-config/main/install.sh | sh
+sudo curl -L https://raw.githubusercontent.com/TheGoldenPatrik1/sketchybar-config/main/scripts/install.sh | sh
 ```
 
 6. Restart SketchyBar:
