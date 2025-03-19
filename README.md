@@ -14,7 +14,7 @@ In addition to possessing all the features of the aforementioned configuration, 
 - Support for a **JSON Configuration File** to customize various aspects of the bar.
 - Improved **Media Widget**, with superior play/pause functionality.
 - **RAM Widget** that displays the current RAM utilization, along with a graph.
-- **Settings Widget** to refresh SketchyBar, quit SketchyBar, or open the configuration file in VSCode; useful for development.
+- **Settings Widget** to refresh SketchyBar, quit SketchyBar, open the configuration file in VSCode, or upgrade to the latest version.
 - **Stock Widget** that displays current stock trends, with 1D, 5D, and 1M data.
 - **VPN Icon** that displays on the **Wifi Widget**, when a connected to a VPN.
 - **Weather Widget** that displays current temperature and conditions, with a pop-up menu displaying semi-hourly forecast for the next two days.

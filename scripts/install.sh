@@ -16,6 +16,7 @@ echo "Cloning Config"
 git clone https://github.com/TheGoldenPatrik1/sketchybar-config /tmp/sketchybar
 mv $HOME/.config/sketchybar $HOME/.config/sketchybar_backup
 mv /tmp/sketchybar $HOME/.config/sketchybar
+chmod +x $HOME/.config/sketchybar/scripts/*.sh
 
 # Restart
 brew services restart sketchybar

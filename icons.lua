@@ -13,6 +13,7 @@ local icons = {
     restart="􀚁",
     stop="􀜪",
     pencil="􀈊",
+    upgrade="􁾨",
     ram="􀫦",
     weather = {
         sunny="􀆭",

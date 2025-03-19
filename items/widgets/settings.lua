@@ -39,6 +39,17 @@ edit_configuration:subscribe("mouse.clicked", function()
     sbar.exec("osascript -e 'tell application \"Terminal\" to if (count of windows) = 0 then reopen' -e 'tell application \"Terminal\" to activate' -e 'tell application \"Terminal\" to do script \"cd ~/.config/sketchybar && code config.json\" in front window'")
 end)
 
+local upgrade = sbar.add("item", {
+    position = "popup." .. settings_widget.name,
+    icon = { string = icons.upgrade },
+    label = { string = "Upgrade" },
+    drawing = "off"
+})
+
+upgrade:subscribe("mouse.clicked", function()
+    sbar.exec("$CONFIG_DIR/scripts/upgrade.sh")
+end)
+
 sbar.add("bracket", "widgets.settings.bracket", { settings_widget.name }, {
     background = { color = colors.bg1 }
 })
@@ -50,6 +61,13 @@ sbar.add("item", "widgets.settings.padding", {
 
 settings_widget:subscribe("mouse.clicked", function()
     settings_widget:set( { popup = { drawing = "toggle" } })
+    sbar.exec("git fetch origin && git log --oneline main..origin/main", function(output)
+        if output == "" then
+            upgrade:set( { drawing = "off" })
+        else
+            upgrade:set( { drawing = "on" })
+        end
+    end)
 end)
 
 settings_widget:subscribe("mouse.exited.global", function()
