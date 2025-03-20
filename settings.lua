@@ -27,8 +27,9 @@ local function load_config()
         group_paddings = 5,
         hide_widgets = {},
         icons = "sf-symbols", -- alternatively available: NerdFont
-        paddings = 3,
-        python_command = "python",
+        paddings_left = 7,
+	    paddings_right = 3,
+        python_command = "python3",
         stocks = {
             default_symbol = { symbol = "^GSPC", name = "S&P 500" },
             symbols = {
@@ -39,7 +40,7 @@ local function load_config()
         },
         weather = {
             location = false,
-            use_shortcut = false
+            use_shortcut = true
         }
     }
 
