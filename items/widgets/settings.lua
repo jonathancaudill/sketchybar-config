@@ -46,8 +46,15 @@ local upgrade = sbar.add("item", {
     drawing = "off"
 })
 
+local loading = false
 upgrade:subscribe("mouse.clicked", function()
-    sbar.exec("$CONFIG_DIR/scripts/upgrade.sh")
+    if loading then
+        return
+    end
+    loading = true
+    sbar.exec("$CONFIG_DIR/scripts/upgrade.sh", function()
+        loading = false
+    end)
 end)
 
 sbar.add("bracket", "widgets.settings.bracket", { settings_widget.name }, {
