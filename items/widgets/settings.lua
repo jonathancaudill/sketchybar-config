@@ -35,8 +35,16 @@ local edit_configuration = sbar.add("item", {
     label = { string = "Edit Config" }
 })
 
+local function build_script(editor)
+    return "osascript -e 'tell application \"Terminal\" to if (count of windows) = 0 then reopen' -e 'tell application \"Terminal\" to activate' -e 'tell application \"Terminal\" to do script \"cd ~/.config/sketchybar && " .. editor .. " config.json\" in front window'"
+end
+
 edit_configuration:subscribe("mouse.clicked", function()
-    sbar.exec("osascript -e 'tell application \"Terminal\" to if (count of windows) = 0 then reopen' -e 'tell application \"Terminal\" to activate' -e 'tell application \"Terminal\" to do script \"cd ~/.config/sketchybar && code config.json\" in front window'")
+    sbar.exec(build_script("code"), function(output)
+        if output == "" then
+            sbar.exec(build_script("vim"))
+        end
+    end)
 end)
 
 local upgrade = sbar.add("item", {
