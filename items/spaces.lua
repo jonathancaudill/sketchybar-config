@@ -104,7 +104,7 @@ local spaces_indicator = sbar.add("item", {
   icon = {
     padding_left = 8,
     padding_right = 9,
-    color = colors.grey,
+    color = colors.bar.border,
     string = icons.switch.on,
   },
   label = {
@@ -112,11 +112,11 @@ local spaces_indicator = sbar.add("item", {
     padding_left = 0,
     padding_right = 8,
     string = "Spaces",
-    color = colors.bg1,
+    color = colors.white,
   },
   background = {
-    color = colors.with_alpha(colors.grey, 0.0),
-    border_color = colors.with_alpha(colors.bg1, 0.0),
+    color = colors.with_alpha(colors.bg1, 0.0),
+    border_color = colors.with_alpha(colors.bg2, 0.0),
   }
 })
 

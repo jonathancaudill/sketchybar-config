@@ -16,7 +16,7 @@ local cpu = sbar.add("graph", "widgets.cpu" , 42, {
     drawing = true,
   },
   label = {
-    string = "cpu ??%",
+    string = "CPU ??%",
     font = {
       family = settings.font.numbers,
       style = settings.font.style_map["Bold"],
@@ -51,7 +51,7 @@ cpu:subscribe("cpu_update", function(env)
 
   cpu:set({
     graph = { color = color },
-    label = { string = "cpu " .. load .. "%" }
+    label = { string = "CPU " .. load .. "%" }
   })
 end)
 

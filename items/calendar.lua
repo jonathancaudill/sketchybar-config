@@ -9,7 +9,7 @@ local cal_up = sbar.add("item", {
     padding_left = -5,
     width = 0,
     label = {
-      color = colors.white,
+      color = colors.grey,
       font = {
         family = settings.font.numbers,
         size = 11.0
@@ -22,7 +22,7 @@ local cal_down = sbar.add("item", {
     position = "right",
     padding_left = -5,
     label = {
-      color = colors.white,
+      color = colors.grey,
       font = {
         family = settings.font.numbers,
         size = 11.0
@@ -36,7 +36,7 @@ local cal_bracket = sbar.add("bracket", { cal_up.name, cal_down.name }, {
   background = {
     color = colors.transparent,
     height = 30,
-    border_color = colors.grey
+    border_color = colors.transparent
   },
   update_freq = 30
 })
