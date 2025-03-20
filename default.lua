@@ -28,7 +28,7 @@ sbar.default({
   background = {
     height = 28,
     corner_radius = 9,
-    border_width = 2,
+    border_width = 0,
     border_color = colors.bg2,
     image = {
       corner_radius = 9,
@@ -44,9 +44,10 @@ sbar.default({
       color = colors.popup.bg,
       shadow = { drawing = true },
     },
-    blur_radius = 50,
+    blur_radius = 90,
   },
   padding_left = 5,
   padding_right = 5,
   scroll_texts = true,
+  blur_radius = 50
 })

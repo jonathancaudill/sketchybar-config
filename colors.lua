@@ -7,12 +7,12 @@ return {
   yellow = 0xffe7c664,
   orange = 0xfff39660,
   magenta = 0xffb39df3,
-  grey = 0xff7f8490,
+  grey = 0xff171830,
   transparent = 0x00000000,
 
   bar = {
-    bg = 0xf02c2e34,
-    border = 0xff2c2e34,
+    bg = 0x20ffffff,
+    border = 0x50ffffff,
   },
   popup = {
     bg = 0xc02c2e34,

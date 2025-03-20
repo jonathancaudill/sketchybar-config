@@ -9,7 +9,6 @@ local widgets = {
     "volume",
     "wifi",
     "cpu",
-    "ram",
     "stocks"
 }
 

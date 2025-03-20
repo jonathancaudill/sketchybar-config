@@ -27,8 +27,8 @@ local function load_config()
         group_paddings = 5,
         hide_widgets = {},
         icons = "sf-symbols", -- alternatively available: NerdFont
-        paddings_left = 7,
-	    paddings_right = 3,
+        paddings = 3,
+        menupadding = 7,
         python_command = "python3",
         stocks = {
             default_symbol = { symbol = "^GSPC", name = "S&P 500" },
